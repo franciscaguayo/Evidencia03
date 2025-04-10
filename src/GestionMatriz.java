@@ -17,6 +17,8 @@ public class GestionMatriz {
         int[][] matriz = crearMatriz(filas, columnas);
 
         llenarMatriz(matriz);
+
+        menuPrincipal(matriz);
         
         System.out.println("Fin del programa");
     }
@@ -45,7 +47,7 @@ public class GestionMatriz {
 
     public static void mostrarFila(int[][] matriz, int fila) {
         if (fila < 0 || fila >= matriz.length) {
-            System.out.println("Número de fila no válido.");
+            System.out.println("Numero de fila no valido.");
             return;
         }
 
@@ -69,5 +71,38 @@ public class GestionMatriz {
         }
 
         return contadorCeros > totalElementos / 2;
+    }
+
+    public static void menuPrincipal(int[][] matriz) {
+        int opcion;
+        do {
+            System.out.println("\n--- MENU PRINCIPAL ---");
+            System.out.println("1. Mostrar una fila");
+            System.out.println("2. Verificar si es matriz cero");
+            System.out.println("3. Salir");
+            System.out.print("Elija una opción (1-3): ");
+
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese el numero de fila a mostrar (0 - " + (matriz.length-1) + "): ");
+                    int fila = scanner.nextInt();
+                    mostrarFila(matriz, fila);
+                    break;
+                case 2:
+                    if (esMatrizCero(matriz)) {
+                        System.out.println("La matriz ES de tipo cero");
+                    } else {
+                        System.out.println("La matriz NO ES de tipo cero");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Saliendo del menu");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+            }
+        } while (opcion != 3);
     }
 }
